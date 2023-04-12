@@ -10,7 +10,7 @@ export const APIKeyInput = (props: TextInputProps) => {
     setApiKey(e.currentTarget.value);
   };
 
-  const disableZoom = (e: TouchEvent<HTMLTextAreaElement>) => {
+  const disableZoom = (e: TouchEvent<HTMLInputElement>) => {
     if (e.touches.length > 1) {
       e.preventDefault();
     }
@@ -18,14 +18,12 @@ export const APIKeyInput = (props: TextInputProps) => {
 
   return (
     <TextInput
-      {...{
-        type: "password",
-        label: "Your API key",
-        value: apiKey,
-        onChange,
-        onTouchStart: disableZoom,
-        ...props,
-      }}
+      type="password"
+      label="Your API key"
+      value={apiKey}
+      onChange={onChange}
+      onTouchStart={disableZoom}
+      {...props}
     />
   );
 };
