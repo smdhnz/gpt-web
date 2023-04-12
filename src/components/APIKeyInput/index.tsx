@@ -1,4 +1,4 @@
-import type { ChangeEvent } from "react";
+import type { ChangeEvent, TouchEvent } from "react";
 import { TextInput, type TextInputProps } from "@mantine/core";
 import { useAtom } from "jotai";
 import { apiKeyAtom } from "../../atoms/apiKeyAtom";
@@ -10,6 +10,12 @@ export const APIKeyInput = (props: TextInputProps) => {
     setApiKey(e.currentTarget.value);
   };
 
+  const disableZoom = (e: TouchEvent<HTMLTextAreaElement>) => {
+    if (e.touches.length > 1) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <TextInput
       {...{
@@ -17,6 +23,7 @@ export const APIKeyInput = (props: TextInputProps) => {
         label: "Your API key",
         value: apiKey,
         onChange,
+        onTouchStart: disableZoom,
         ...props,
       }}
     />

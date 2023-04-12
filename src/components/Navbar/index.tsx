@@ -4,7 +4,7 @@ import { APIKeyInput } from "../APIKeyInput";
 
 export const Navbar = () => {
   return (
-    <MtNavbar width={{ base: 250 }}>
+    <MtNavbar width={{ xs: 250 }}>
       <Stack p="1rem">
         <ColorSchemeToggle />
         <Divider />

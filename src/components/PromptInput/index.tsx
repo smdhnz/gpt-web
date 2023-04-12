@@ -1,4 +1,4 @@
-import type { ChangeEvent } from "react";
+import type { ChangeEvent, TouchEvent } from "react";
 import type { PaperProps } from "@mantine/core";
 import { Paper, Textarea, Flex, ActionIcon } from "@mantine/core";
 import { TbSend } from "react-icons/tb";
@@ -19,6 +19,12 @@ export const PromptInput = (props: PaperProps) => {
     send();
   };
 
+  const disableZoom = (e: TouchEvent<HTMLTextAreaElement>) => {
+    if (e.touches.length > 1) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <Paper px="0.5rem" shadow="lg" withBorder {...props}>
       <Flex align="center">
@@ -31,6 +37,7 @@ export const PromptInput = (props: PaperProps) => {
           value={prompt}
           onChange={onChange}
           onKeyDown={getHotkeyHandler([["mod+Enter", submit]])}
+          onTouchStart={disableZoom}
         />
         <ActionIcon
           size="lg"
