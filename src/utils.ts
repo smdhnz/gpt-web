@@ -35,7 +35,7 @@ export const ommitedMessages = (chat: Message[]): Message[] => {
 
   if (tokenLength < MAX_TOKENS) return chat;
 
-  chat.splice(1, 1);
+  chat.splice(0, 1);
 
   return ommitedMessages(chat);
 };

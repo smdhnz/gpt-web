@@ -19,9 +19,7 @@ export type Chat = {
 export type History = Chat[];
 
 export const promptAtom = atom("");
-
 export const messagesAtom = atom<Message[]>([]);
-
 export const isLoadingAtom = atom(false);
 
 export const sendAtom = atom(null, async (get, set) => {
@@ -43,7 +41,7 @@ export const sendAtom = atom(null, async (get, set) => {
       "chat",
       {
         model: "gpt-3.5-turbo",
-        messages: messages.map((m) => ({ role: m.role, content: m.content })),
+        messages: messages.map(({ role, content }) => ({ role, content })),
       },
       { apiKey: get(apiKeyAtom) }
     );
@@ -56,30 +54,26 @@ export const sendAtom = atom(null, async (get, set) => {
       const { value, done } = await reader.read();
       if (done) break;
 
-      if (isFirst) {
-        isFirst = false;
-        set(messagesAtom, (prev) => [
-          ...prev,
-          {
-            id: createId(),
-            role: "assistant",
-            content: decoder.decode(value),
-          },
-        ]);
-      } else {
-        set(messagesAtom, (prev) => [
-          ...prev.slice(0, -1),
-          {
-            ...prev.slice(-1)[0],
-            content: prev.slice(-1)[0].content + decoder.decode(value),
-          },
-        ]);
-      }
+      const content = decoder.decode(value);
+
+      set(messagesAtom, (prev) =>
+        isFirst
+          ? ((isFirst = false),
+            [...prev, { id: createId(), role: "assistant", content }])
+          : [
+              ...prev.slice(0, -1),
+              {
+                ...prev.slice(-1)[0],
+                content: prev.slice(-1)[0].content + content,
+              },
+            ]
+      );
     }
   } catch (e: any) {
     console.error(e.message);
     toast.error(e.message);
     set(messagesAtom, (prev) => prev.slice(0, -1));
+  } finally {
+    set(isLoadingAtom, false);
   }
-  set(isLoadingAtom, false);
 });

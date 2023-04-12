@@ -35,7 +35,7 @@ export const App = () => {
           globalStyles: (_theme) => ({
             body: {
               scrollbarWidth: "none",
-              "-ms-overflow-style": "none",
+              msOverflowStyle: "none",
             },
             "*::-webkit-scrollbar": {
               display: "none",
