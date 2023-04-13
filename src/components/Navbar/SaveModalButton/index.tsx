@@ -46,7 +46,7 @@ export const SaveModalButton = () => {
             onChange={onChange}
             onTouchStart={disableZoom}
           />
-          <Button color="dark" variant="default" onClick={onClick}>
+          <Button variant="default" onClick={onClick}>
             Save
           </Button>
         </Stack>
@@ -57,7 +57,7 @@ export const SaveModalButton = () => {
         variant="default"
         onClick={isEmpty ? undefined : open}
       >
-        Save
+        Save chat
       </Button>
     </>
   );

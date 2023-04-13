@@ -6,8 +6,8 @@ export const ClearButton = () => {
   const clear = useSetAtom(clearAtom);
 
   return (
-    <Button color="dark" variant="default" onClick={clear}>
-      Clear
+    <Button variant="default" onClick={clear}>
+      Clear chat
     </Button>
   );
 };
