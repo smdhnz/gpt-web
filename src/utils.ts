@@ -41,3 +41,35 @@ export const ommitedMessages = (chat: Message[]): Message[] => {
 };
 
 // =================================================================
+
+export function promiseWithTimeout<T>(
+  promise: Promise<T>,
+  ms: number,
+  timeoutError = new Error("Promise timed out")
+): Promise<T> {
+  // create a promise that rejects in milliseconds
+  const timeout = new Promise<never>((_, reject) => {
+    setTimeout(() => {
+      reject(timeoutError);
+    }, ms);
+  });
+  // returns a race between timeout and the passed promise
+  return Promise.race<T>([promise, timeout]);
+}
+
+// =================================================================
+
+export const handleStreamData = async (
+  stream: ReadableStream,
+  callback: (value: string) => void
+) => {
+  const reader = stream.getReader();
+  const decoder = new TextDecoder();
+
+  while (true) {
+    const { value, done } = await reader.read();
+    if (done) break;
+
+    callback(decoder.decode(value));
+  }
+};
