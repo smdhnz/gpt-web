@@ -24,7 +24,7 @@ export const markdownToHtml = (text: string) => {
 import GPT3Tokenizer from "gpt3-tokenizer";
 import type { Message } from "./atoms/messageAtom";
 
-const MAX_TOKENS = 4096;
+const MAX_TOKENS = 4096 - 6;
 const tokenizer = new GPT3Tokenizer({ type: "gpt3" });
 const getTokens = (str: string): number => tokenizer.encode(str).bpe.length;
 

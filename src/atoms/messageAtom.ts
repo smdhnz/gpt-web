@@ -76,7 +76,10 @@ export const sendAtom = atom(null, async (get, set) => {
         "chat",
         {
           model: "gpt-3.5-turbo",
-          messages: messages.map(({ role, content }) => ({ role, content })),
+          messages: [
+            { role: "system", content: "Respond using Markdown" },
+            ...messages.map(({ role, content }) => ({ role, content })),
+          ],
         },
         { apiKey: get(apiKeyAtom) }
       ),
