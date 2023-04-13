@@ -48,14 +48,6 @@ export const App = () => {
         <AppShell
           navbarOffsetBreakpoint="xs"
           navbar={!isSmallScreen ? <Navbar /> : undefined}
-          styles={(theme) => ({
-            main: {
-              backgroundColor:
-                theme.colorScheme === "dark"
-                  ? theme.colors.dark[8]
-                  : theme.colors.gray[0],
-            },
-          })}
           padding={0}
         >
           <Container>
