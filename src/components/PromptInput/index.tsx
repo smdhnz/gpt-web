@@ -4,7 +4,7 @@ import { Paper, Textarea, Flex, ActionIcon } from "@mantine/core";
 import { TbSend } from "react-icons/tb";
 import { getHotkeyHandler } from "@mantine/hooks";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { promptAtom, sendAtom, isLoadingAtom } from "../../atoms/messageAtom";
+import { promptAtom, sendAtom, isLoadingAtom } from "@/atoms/messageAtom";
 
 export const PromptInput = (props: PaperProps) => {
   const [prompt, setPrompt] = useAtom(promptAtom);

@@ -1,7 +1,7 @@
 import { SegmentedControl, Center, Box } from "@mantine/core";
 import { TbSun, TbMoon } from "react-icons/tb";
 import { useAtom } from "jotai";
-import { toggleColorSchemeAtom } from "../../atoms/colorSchemaAtom";
+import { toggleColorSchemeAtom } from "@/atoms/colorSchemaAtom";
 
 export const ColorSchemeToggle = () => {
   const [colorScheme, toggleColorScheme] = useAtom(toggleColorSchemeAtom);

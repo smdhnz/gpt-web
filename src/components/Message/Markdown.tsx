@@ -1,5 +1,5 @@
 import { Box, rem } from "@mantine/core";
-import { markdownToHtml } from "../../utils";
+import { markdownToHtml } from "@/utils";
 
 type Props = {
   content: string;

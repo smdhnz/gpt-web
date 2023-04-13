@@ -1,10 +1,10 @@
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, Stack, Divider, ActionIcon } from "@mantine/core";
 import { TbSettings } from "react-icons/tb";
-import { ColorSchemeToggle } from "../ColorSchemeToggle";
-import { APIKeyInput } from "../APIKeyInput";
+import { ColorSchemeToggle } from "../ui/ColorSchemeToggle";
+import { APIKeyInput } from "../ui/APIKeyInput";
 
-export const SettingModal = () => {
+export const SettingModalButton = () => {
   const [opened, { open, close }] = useDisclosure(false);
 
   return (

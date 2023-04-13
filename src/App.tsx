@@ -5,7 +5,7 @@ import {
   Container,
   Box,
 } from "@mantine/core";
-import { Message, Navbar, PromptInput, SettingModal } from "./components";
+import { Message, Navbar, PromptInput, SettingModalButton } from "./components";
 import { Toaster } from "sonner";
 import { useMediaQuery } from "@mantine/hooks";
 import { useAtomValue } from "jotai";
@@ -44,7 +44,7 @@ export const App = () => {
         }}
       >
         <Toaster richColors position="top-center" />
-        {isSmallScreen && <SettingModal />}
+        {isSmallScreen && <SettingModalButton />}
         <AppShell
           navbarOffsetBreakpoint="xs"
           navbar={!isSmallScreen ? <Navbar /> : undefined}

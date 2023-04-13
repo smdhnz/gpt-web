@@ -14,10 +14,31 @@ export type Message = {
   role: "system" | "user" | "assistant";
   content: string;
 };
+export type Chat = {
+  id: string;
+  name: string;
+  messages: Message[];
+};
 
 export const promptAtom = atom("");
 export const messagesAtom = atom<Message[]>([]);
+export const historyAtom = atom<Chat[]>([]);
 export const isLoadingAtom = atom(false);
+
+export const clearAtom = atom(null, (_, set) => {
+  set(messagesAtom, []);
+});
+
+export const saveAtom = atom(null, (get, set, name: string) => {
+  set(historyAtom, (prev) => [
+    ...prev,
+    {
+      id: createId(),
+      name,
+      messages: get(messagesAtom),
+    },
+  ]);
+});
 
 export const sendAtom = atom(null, async (get, set) => {
   const messages = ommitedMessages([
