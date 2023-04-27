@@ -12,7 +12,7 @@ export const markdownToHtml = (text: string) => {
     .use(remarkBreaks)
     .use(remarkParse)
     .use(remarkRehype)
-    .use(rehypeHighlight)
+    .use(rehypeHighlight, { ignoreMissing: true })
     .use(rehypeStringify)
     .processSync(text);
 
